@@ -46,7 +46,7 @@ public class TransactionService {
     }
 
     public List<Transaction> getTransactionsByDateRange(LocalDateTime start, LocalDateTime end){
-        return transactionRepository.findByTransactionDateBetweenOrderByTtansactionDateDesc(start, end);
+        return transactionRepository.findByTransactionDateBetweenOrderByTransactionDateDesc(start, end);
     }
 
 }

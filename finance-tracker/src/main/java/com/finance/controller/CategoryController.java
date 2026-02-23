@@ -9,7 +9,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -44,7 +43,15 @@ public class CategoryController {
         return ResponseEntity.created(new URI("/api/categories/" + saved.getId())).body(saved);
     }
 
-    
-    
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+         return ResponseEntity.ok(categoryService.updateCategory(id, category));   
+    }
+
+    @DeleteMapping("/{id}")
+   public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

@@ -13,17 +13,18 @@ import lombok.AllArgsConstructor;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.ORDINAL) // или STRING, в зависимости от вашей логики
+    @Column(name = "type", nullable = false,columnDefinition = "smallint")
     private CategoryType type;
 
-    public enum CategoryType{
-        EXPENSE, //Расход
+    public enum CategoryType {
+        EXPENSE, // Расход
         INCOME // Доход
     }
 
